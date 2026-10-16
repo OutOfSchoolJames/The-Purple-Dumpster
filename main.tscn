@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://d2ayappqog6mc"]
+
+[ext_resource type="Script" uid="uid://exaetdjhufk6" path="res://main.gd" id="1_lquwl"]
+[ext_resource type="Script" uid="uid://b07bawlmvrcyl" path="res://purple_guy.gd" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://dofnt8a13nsh3" path="res://puple guy.svg" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://c7v8vmuj6cy0r" path="res://costume2.svg" id="3_1bvp3"]
+[ext_resource type="Script" uid="uid://yjtd2fmdldja" path="res://dumpster_boy.gd" id="3_lquwl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
+size = Vector2(2298, 1390)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(1152, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(61, 61)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
+size = Vector2(71, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(61, 61)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
+size = Vector2(79, 78)
+
+[node name="Main" type="Node" unique_id=494601686]
+script = ExtResource("1_lquwl")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2097093929]
+visible = false
+position = Vector2(576, 157)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=297163544]
+position = Vector2(0, 48)
+shape = SubResource("RectangleShape2D_7mycd")
+
+[node name="grass" type="StaticBody2D" parent="." unique_id=1413639033]
+position = Vector2(512, 400)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="grass" unique_id=1732763430]
+position = Vector2(64, 0)
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="Polygon2D" type="Polygon2D" parent="grass" unique_id=389036433]
+color = Color(0, 0.3867997, 2.8878452e-07, 1)
+polygon = PackedVector2Array(-512, -64, 640, -64, 640, 64, -512, 64)
+
+[node name="purple_guy" type="RigidBody2D" parent="." unique_id=1792409740]
+position = Vector2(176, 168)
+gravity_scale = 8.0
+script = ExtResource("2_0xm2m")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="purple_guy" unique_id=1217741045]
+texture = ExtResource("2_h2yge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="purple_guy" unique_id=679380967]
+position = Vector2(-2.5, 0.75)
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="Area2D" type="Area2D" parent="purple_guy" unique_id=1631289258]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="purple_guy/Area2D" unique_id=1958335646]
+position = Vector2(-2.5, 0)
+shape = SubResource("RectangleShape2D_272bh")
+
+[node name="Dumpster_Boy" type="RigidBody2D" parent="." unique_id=1204405661]
+position = Vector2(1051, 157)
+gravity_scale = 8.0
+script = ExtResource("3_lquwl")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Dumpster_Boy" unique_id=1765843882]
+texture = ExtResource("3_1bvp3")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dumpster_Boy" unique_id=122402294]
+position = Vector2(3, 5.5)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="Area2D" type="Area2D" parent="Dumpster_Boy" unique_id=1304881870]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Dumpster_Boy/Area2D" unique_id=1063761648]
+position = Vector2(3.5, 5)
+shape = SubResource("RectangleShape2D_5vw27")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1064125237]
+position = Vector2(576, 157)
+zoom = Vector2(0.5, 0.5)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=23072134]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=281891341]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -528.0
+offset_top = -437.0
+offset_right = 519.0
+offset_bottom = 87.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+resize_font_to_fit = true
+maximum_font_size = 10000
+
+[connection signal="body_shape_exited" from="Area2D" to="." method="_on_area_2d_body_shape_exited"]
