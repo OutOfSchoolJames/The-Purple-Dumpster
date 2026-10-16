@@ -14,6 +14,6 @@ func _process(delta: float) -> void:
 func _on_area_2d_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if not body :
 		return
-	$Label.text = body.name + " loses"
+	$CanvasLayer/Label.text = body.name + " loses"
 	await get_tree().create_timer(3.0).timeout
 	get_tree().quit()
